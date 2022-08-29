@@ -1,0 +1,21 @@
+version: "3"
+services:
+  rust-env:
+    container_name: rust-env
+    image: peeeechi/rust:latest
+    volumes:
+      - type: bind
+        source: "./workspace"
+        target: "/workspace"
+    # ports:
+    #   - 3000:3000
+    command: /bin/bash
+    working_dir: /workspace
+    entrypoint: "/tmp/init.sh"
+    tty: true
+    environment:
+      - USER_NAME=${USER_NAME}
+      - GROUP_NAME=${GROUP_NAME}
+      - UID=${UID}
+      - GID=${GID}
+    user: root
